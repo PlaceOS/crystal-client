@@ -29,10 +29,10 @@ module PlaceOS
       authority = authority_api.fetch
       authority.id.should eq("sgrp-oOO6aZj1-J")
       authority.name.should eq(DOMAIN)
-      authority.description.should be_nil
+      authority.description.should eq(nil)
       authority.login_url.should eq("/login?continue={{url}}")
       authority.logout_url.should eq("/")
-      authority.config["universe"].as_i.should eq(42)
+      authority.config.not_nil!["universe"].as_i.should eq(42)
     end
   end
 end

@@ -23,7 +23,7 @@ module PlaceOS
 
     zones = Array(JSON::Any).from_json(zones_json).map &.to_json
 
-    describe "search" do
+    describe "#search" do
       it "enumerates all zones" do
         WebMock
           .stub(:get, DOMAIN + client.base)
@@ -31,9 +31,8 @@ module PlaceOS
           .to_return(body: zones_json)
         result = client.search
         result.size.should eq(1)
-        zone = result.first
-        zone.should be_a(Client::API::Models::Zone)
-        zone.name.should eq("Place")
+        result.first.should be_a(PlaceOS::Client::API::Models::Zone)
+        result.first.name.should eq("Place")
       end
 
       it "provides zone search" do
@@ -58,17 +57,17 @@ module PlaceOS
           )
           .to_return(body: zones.first)
         result = client.create name: "Place"
-        result.should be_a(Client::API::Models::Zone)
+        result.should be_a(PlaceOS::Client::API::Models::Zone)
       end
     end
 
-    describe "#retrieve" do
+    describe "#fetch" do
       it "inspects a zones metadata" do
         WebMock
           .stub(:get, DOMAIN + "#{client.base}/zone-oOj2lGgsz")
           .to_return(body: zones.first)
         result = client.fetch "zone-oOj2lGgsz"
-        result.should be_a(Client::API::Models::Zone)
+        result.should be_a(PlaceOS::Client::API::Models::Zone)
       end
     end
 
@@ -82,16 +81,44 @@ module PlaceOS
           )
           .to_return(body: zones.first)
         result = client.update(id: "zone-oOj2lGgsz", name: "Foo")
-        result.should be_a(Client::API::Models::Zone)
+        result.should be_a(PlaceOS::Client::API::Models::Zone)
       end
     end
 
-    describe "#delete" do
+    describe "#destroy" do
       it "execs a delete request" do
         WebMock
           .stub(:delete, DOMAIN + "#{client.base}/zone-oOj2lGgsz")
         result = client.destroy "zone-oOj2lGgsz"
         result.should be_nil
+      end
+    end
+
+    describe "#execute" do
+      # TODO
+      # Unsure about how this is supposed to work
+      pending "should exec execute" do
+        # body = {id: "zone-oOj2lGgsz", method: "string", module_name: "string"}.to_json
+        WebMock
+          .stub(:post, DOMAIN + "#{client.base}/zone-oOj2lGgsz/module_name_1/method")
+          .with(
+            headers: HTTP::Headers{"Content-Type" => "application/json"},
+            body: {id: "zone-oOj2lGgsz", method: "string", module_name: "string"}.to_json,
+          )
+          .to_return(body: zones.first)
+        result = client.execute id: "zone-oOj2lGgsz", method: "string", module_name: "string"
+        result.should be_a(PlaceOS::Client::API::Models::Zone)
+      end
+    end
+
+    describe "#trigger" do
+      it "should exec trigger" do
+        WebMock
+          .stub(:get, DOMAIN + "#{client.base}/zone-oOj2lGgsz/triggers")
+          .to_return(body: {"name" => "Place", "control_system_id" => "hello"}.to_json)
+        result = client.trigger "zone-oOj2lGgsz"
+        result.should be_a(PlaceOS::Client::API::Models::Trigger)
+        # result.to_json.should eq("{\"name\":\"Place\",\"control_system_id\":\"hello\"}")
       end
     end
   end

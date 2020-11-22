@@ -1,4 +1,4 @@
-require "../api/models/metadata"
+# require "../api/models/metadata"
 require "./endpoint"
 
 module PlaceOS
@@ -7,10 +7,6 @@ module PlaceOS
 
     def fetch(id : String, name : String? = nil)
       get "#{base}/#{id}", params: from_args, as: Hash(String, API::Models::Metadata)
-    end
-
-    def children(id : String, name : String? = nil)
-      get "#{base}/#{id}/children", params: from_args, as: Array(NamedTuple(zone: API::Models::Zone, metadata: Hash(String, API::Models::Metadata)))
     end
 
     def update(
@@ -27,6 +23,10 @@ module PlaceOS
     def destroy(id : String, name : String)
       delete "#{base}/#{id}", params: from_args
       nil
+    end
+
+    def children(id : String, name : String? = nil)
+      get "#{base}/#{id}/children", params: from_args, as: Array(NamedTuple(zone: API::Models::Zone, metadata: Hash(String, API::Models::Metadata)))
     end
   end
 end

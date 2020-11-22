@@ -3,6 +3,7 @@ require "json"
 require "mutex"
 require "oauth2"
 require "uri"
+require "placeos-models" # is there a better place for this require?
 
 require "./api/**"
 

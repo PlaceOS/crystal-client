@@ -15,5 +15,18 @@ module PlaceOS
     def version
       get "#{base}/version", as: API::Models::Version
     end
+
+    # Unique Actions
+    def root
+      get "#{base}"
+    end
+
+    def reindex(backfill : Bool? = true)
+      get "#{base}/reindex", params: from_args
+    end
+
+    def backfill
+      get "#{base}/backfill"
+    end
   end
 end
