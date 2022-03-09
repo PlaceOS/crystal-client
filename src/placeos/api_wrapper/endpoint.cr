@@ -11,10 +11,55 @@ module PlaceOS
     def initialize(@client : APIWrapper)
     end
 
+    # List or search.
+    #
+    # Results maybe filtered by specifying a query - *q* - to search across
+    # attributes. A small query language is supported within this:
+    #
+    # Operator | Action
+    # -------- | ------
+    # `+`      | Matches both terms
+    # `|`      | Matches either terms
+    # `-`      | Negates a single token
+    # `"`      | Wraps tokens to form a phrase
+    # `(`  `)` | Provides precedence
+    # `~N`     | Specifies edit distance (fuzziness) after a word
+    # `~N`     | Specifies slop amount (deviation) after a phrase
+    #
+    # Up to *limit*  will be returned, with a paging based on *offset*.
+    module Search(T)
+      def search(
+        q : String? = nil,
+        limit : Int = 20,
+        offset : Int = 0,
+        **args
+      ) : Array(T)
+        get base, params: from_args, as: Array(T)
+      end
+    end
+
+    module Index(T)
+      def index : Array(T)
+        get base, params: from_args, as: Array(T)
+      end
+    end
+
     module Fetch(T)
       # Returns a {{ T.id }}
-      def fetch(id : String)
-        get "#{base}/#{id}", as: T
+      def fetch(id : String, **args) : T
+        get "#{base}/#{id}", params: from_args, as: T
+      end
+    end
+
+    module Create(T)
+      def create(**args) : T
+        post base, body: from_args, as: T
+      end
+    end
+
+    module Update(T)
+      def update(id, **args) : T
+        post "#{base}/#{id}", body: from_args, as: T
       end
     end
 
@@ -24,6 +69,47 @@ module PlaceOS
         delete "#{base}/#{id}"
         nil
       end
+    end
+
+    module StartStop
+      # Starts a module.
+      def start(id : String)
+        post "#{base}/#{id}/start"
+        nil
+      end
+
+      # Stops a module.
+      def stop(id : String)
+        post "#{base}/#{id}/stop"
+        nil
+      end
+    end
+
+    module Settings
+      def settings(id : String)
+        get "#{base}/#{id}/settings", as: Array(PlaceOS::Client::API::Models::Settings)
+      end
+    end
+
+    module State
+      # def state(id : String, lookup : String? = nil)
+      #   path = "#{base}/#{id}/state"
+      #   path += "/#{lookup}" if lookup
+
+      #   get path
+      # end
+    end
+
+    module Execute
+      # def execute(
+      #   id : String,
+      #   method : String,
+      #   # module_name : String,
+      #   # index : Int32 = 1,
+      #   args = nil
+      # )
+      #   # post "#{base}/#{id}/#{module_name}_#{index}/#{method}", body: args
+      # end
     end
 
     {% for method in %w(get post put head delete patch options) %}
@@ -123,6 +209,35 @@ module PlaceOS
       {% key = arg.name.symbolize == :mod ? "module" : arg.name.stringify %}
       {{ yield key, arg.name, arg.default_value }}
     {% end %}
+    end
   end
+end
+
+macro __create_from_model__(model)
+  def create(
+    {% for name, opts in model.resolve.constant("FIELDS") %}
+      {% if opts[:mass_assign] == true && !%w(id updated_at created_at).includes?(name.id.stringify) %}
+        {{name.id}} : {{opts[:klass]}}? = nil,
+      {% end %}
+    {% end %}
+    )
+    post base, body: from_args, as: {{model}}
   end
+end
+
+macro __update_from_model__(model)
+  def update(
+    {% for name, opts in model.resolve.constant("FIELDS") %}
+      {% if opts[:mass_assign] == true && !%w(updated_at created_at).includes?(name.id.stringify) %}
+        {{name.id}} : {{opts[:klass]}}? = nil,
+      {% end %}
+    {% end %}
+  )
+    put "#{base}/#{id}", body: from_args, as: {{model}}
+  end
+end
+
+macro __create_update_from_model__(model)
+  __create_from_model__({{model}})
+  __update_from_model__({{model}})
 end

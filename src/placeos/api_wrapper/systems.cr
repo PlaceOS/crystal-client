@@ -2,24 +2,18 @@ require "./endpoint"
 
 module PlaceOS
   class Client::APIWrapper::Systems < Client::APIWrapper::Endpoint
-    include Client::APIWrapper::Endpoint::Fetch(System)
+    # include Client::APIWrapper::Endpoint::Search(ControlSystem)
+    include Client::APIWrapper::Endpoint::Fetch(ControlSystem)
+    # include Client::APIWrapper::Endpoint::Create(ControlSystem)
+    # include Client::APIWrapper::Endpoint::Update(ControlSystem)
     include Client::APIWrapper::Endpoint::Destroy
+    include Client::APIWrapper::Endpoint::StartStop
+    include Client::APIWrapper::Endpoint::Settings
+
     getter base : String = "#{API_ROOT}/systems"
 
     # Interaction
     ###########################################################################
-
-    # Start all modules within a system.
-    def start(id : String)
-      post "#{base}/#{id}/start"
-      nil
-    end
-
-    # Stops all modules within a system.
-    def stop(id : String)
-      post "#{base}/#{id}/stop"
-      nil
-    end
 
     # Executes a behaviour exposed by a module within the passed system *id*.
     def execute(
@@ -54,10 +48,6 @@ module PlaceOS
       get "#{base}/#{id}/types", as: Hash(String, Int32)
     end
 
-    def settings(id : String)
-      get "#{base}/#{id}/settings", as: Array(Settings)
-    end
-
     # Management
     ###########################################################################
 
@@ -77,7 +67,7 @@ module PlaceOS
       modules : Array(String)? = nil,
       support_url : String? = nil
     )
-      post base, body: from_args, as: System
+      post base, body: from_args, as: ControlSystem
     end
 
     # Requests a change to an existing system.
@@ -99,7 +89,7 @@ module PlaceOS
       modules : Array(String)? = nil,
       support_url : String? = nil
     )
-      put "#{base}/#{id}", params: "version=#{version}", body: from_args, as: System
+      put "#{base}/#{id}", params: "version=#{version}", body: from_args, as: ControlSystem
     end
 
     # Search
@@ -131,7 +121,7 @@ module PlaceOS
       capacity : Int32? = nil,
       bookable : Bool? = nil
     )
-      get base, params: from_args, as: Array(System)
+      get base, params: from_args, as: Array(ControlSystem)
     end
 
     # Returns systems with a specified email address(es)
@@ -139,7 +129,24 @@ module PlaceOS
     def with_emails(list : Array(String) | String)
       query = list.is_a?(Array) ? list.join(',') : list
 
-      get "#{base}/with_emails", params: HTTP::Params{"in" => query}, as: Array(System)
+      get "#{base}/with_emails", params: HTTP::Params{"in" => query}, as: Array(ControlSystem)
+    end
+
+    # Unique Actions
+    def zones(id : String)
+      get "#{base}/#{id}/zones"
+    end
+
+    def add_module(id : String, module_id : String)
+      put "#{base}/#{id}/module/#{module_id}", as: PlaceOS::Client::API::Models::Module
+    end
+
+    def remove_module(id : String, module_id : String)
+      delete "#{base}/#{id}/module/#{module_id}", as: PlaceOS::Client::API::Models::Module
+    end
+
+    def control
+      ws "#{base}/control"
     end
 
     private getter client

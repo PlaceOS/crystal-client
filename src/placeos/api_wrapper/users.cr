@@ -1,14 +1,62 @@
 require "./endpoint"
 
 module PlaceOS
-  # TODO:
-  # - create
-  # - update
   class Client::APIWrapper::Users < Client::APIWrapper::Endpoint
+    include Client::APIWrapper::Endpoint::Search(User)
     include Client::APIWrapper::Endpoint::Fetch(User)
     include Client::APIWrapper::Endpoint::Destroy
 
     getter base : String = "#{API_ROOT}/users"
+
+    def create(
+      authority_id : String,
+      name : String,
+      password : String? = nil,
+      nickname : String? = nil,
+      email : String? = nil,
+      phone : String? = nil,
+      country : String? = nil,
+      image : String? = nil,
+      ui_theme : String? = nil,
+      misc : String? = nil,
+      login_name : String? = nil,
+      staff_id : String? = nil,
+      first_name : String? = nil,
+      last_name : String? = nil,
+      building : String? = nil,
+      card_number : String? = nil,
+      groups : Array(String)? = nil,
+      sys_admin : Bool? = nil,
+      support : Bool? = nil
+    ) : User
+      post base, body: from_args, as: User
+    end
+
+    def update(
+      id : String,
+      authority_id : String,
+      name : String,
+      password : String? = nil,
+      nickname : String? = nil,
+      email : String? = nil,
+      phone : String? = nil,
+      country : String? = nil,
+      image : String? = nil,
+      ui_theme : String? = nil,
+      misc : String? = nil,
+      first_name : String? = nil,
+      last_name : String? = nil,
+      building : String? = nil,
+      # Admin Attributes
+      login_name : String? = nil,
+      staff_id : String? = nil,
+      card_number : String? = nil,
+      groups : Array(String)? = nil,
+      sys_admin : Bool? = nil,
+      support : Bool? = nil
+    )
+      put "#{base}/#{id}", body: from_args, as: User
+    end
 
     def current
       get "#{base}/current", as: User

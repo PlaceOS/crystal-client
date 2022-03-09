@@ -1,5 +1,5 @@
 require "../endpoint"
-require "../../api/models/auths/*"
+require "placeos-models"
 
 module PlaceOS
   abstract class Client::APIWrapper::AuthBase(Model) < Client::APIWrapper::Endpoint
@@ -31,12 +31,12 @@ module PlaceOS
       get base, params: from_args, as: Array(Model)
     end
 
-    def update(**args)
-      put "#{base}/#{id}", body: from_args, as: Model
-    end
-
     def create(**args) : Model
       post base, body: from_args, as: Model
+    end
+
+    def update(**args)
+      put "#{base}/#{id}", body: from_args, as: Model
     end
   end
 end
