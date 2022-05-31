@@ -1,3 +1,9 @@
+## Unreleased
+
+### Feat
+
+- **api_wrapper/users**: add include deleted param ([#31](https://github.com/PlaceOS/crystal-client/pull/31))
+
 ## v2.7.0 (2022-05-19)
 
 ### Feat
