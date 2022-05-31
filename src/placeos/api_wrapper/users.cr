@@ -40,7 +40,8 @@ module PlaceOS
       q : String? = nil,
       limit : Int = 20,
       offset : Int = 0,
-      authority_id : String? = nil
+      authority_id : String? = nil,
+      include_deleted : Bool = false
     )
       get base, params: from_args, as: Array(API::Models::User)
     end
