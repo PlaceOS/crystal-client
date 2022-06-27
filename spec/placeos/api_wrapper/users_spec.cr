@@ -23,7 +23,7 @@ module PlaceOS
       it "provides user search" do
         WebMock
           .stub(:get, DOMAIN + client.base)
-          .with(query: {"q" => "\"John Doe\"", "limit" => "20", "offset" => "0", "include_deleted" => "false"})
+          .with(query: {"q" => "\"John Doe\"", "limit" => "20", "offset" => "0", "include_deleted" => "false", "include_metadata" => "false"})
           .to_return(body: users_json)
         result = client.search "\"John Doe\""
         result.size.should eq(1)

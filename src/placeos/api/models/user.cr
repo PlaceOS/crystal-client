@@ -32,6 +32,8 @@ module PlaceOS::Client::API::Models
     getter staff_id : String?
     getter card_number : String?
     getter misc : String?
+
+    getter associated_metadata : Hash(String, Metadata)?
   end
 
   struct ResourceToken < Response
