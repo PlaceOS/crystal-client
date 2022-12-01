@@ -1,5 +1,17 @@
 ## Unreleased
 
+### Fix
+
+- **api_wrapper/zones**: use parent id as the param
+
+## v2.7.2 (2022-06-27)
+
+### Feat
+
+- **users**: add include_metadata flag
+
+## v2.7.1 (2022-06-01)
+
 ### Feat
 
 - **api_wrapper/users**: add include deleted param ([#31](https://github.com/PlaceOS/crystal-client/pull/31))
@@ -22,7 +34,6 @@
 
 ### Feat
 
-- add asset manager endpoints
 - **assets**: add missing function
 - **asset_instances**: init controller & spec
 - **assets**: init controller & spec
@@ -31,7 +42,6 @@
 
 ### Feat
 
-- get_access_token_using_resource_owner_credentials insecure
 - get_access_token_using_resource_owner_credentials insecure
 
 ## v2.4.3 (2021-07-28)
@@ -45,7 +55,6 @@
 ### Feat
 
 - add support for x-api-key
-- add support for x-api-key
 
 ## v2.4.1 (2021-06-25)
 
@@ -53,14 +62,11 @@
 
 - user search
 - support optionally disabling cert checks
-- user search
-- support optionally disabling cert checks
 
 ## v2.4.0 (2021-06-02)
 
 ### Feat
 
-- allow custom host headers to be defined
 - allow custom host headers to be defined
 
 ## v2.2.0 (2021-01-29)
@@ -89,13 +95,13 @@
 
 ## v2.1.6 (2020-10-20)
 
-### Fix
-
-- **zones spec**: expects count and capacity
-
 ### Feat
 
 - **zone model**: add additional database fields
+
+### Fix
+
+- **zones spec**: expects count and capacity
 
 ## v2.1.5 (2020-10-12)
 
@@ -164,16 +170,16 @@
 
 ## v1.1.1 (2020-06-17)
 
+### Feat
+
+- **model:trigger**: base trigger models
+- **systems**: add `with_emails`
+
 ### Fix
 
 - **zones**: add parent param to index
 - **zones**: zone tags are an array
 - use `placeos-models`
-
-### Feat
-
-- **model:trigger**: base trigger models
-- **systems**: add `with_emails`
 
 ## v1.0.5 (2020-05-04)
 
@@ -202,16 +208,6 @@
 
 ## v1.0.1 (2020-04-22)
 
-### Fix
-
-- pull `PLACE_URI` from environment
-- **client**: generate method for OAuthApplications
-- **api_wrapper**: invalid reference in auth
-- **api_wrapper**: incorrect query methods
-- **models**: add missing edge_id to system
-- **api_wrapper**: support all serializable bodies
-- **api_wrapper**: hide direct http methods
-
 ### Feat
 
 - **authentication**: support user auth
@@ -231,6 +227,16 @@
 - **api_wrapper**: system creation
 - **api_wrapper**: support systems query
 - **api_wrapper**: implement authority endpoint
+
+### Fix
+
+- pull `PLACE_URI` from environment
+- **client**: generate method for OAuthApplications
+- **api_wrapper**: invalid reference in auth
+- **api_wrapper**: incorrect query methods
+- **models**: add missing edge_id to system
+- **api_wrapper**: support all serializable bodies
+- **api_wrapper**: hide direct http methods
 
 ### Refactor
 
