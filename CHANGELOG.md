@@ -1,5 +1,11 @@
 ## Unreleased
 
+### Feat
+
+- **api_wrapper/endpoint**: print payload on parse error
+
+## v2.7.3 (2022-12-01)
+
 ### Fix
 
 - **api_wrapper/zones**: use parent id as the param
