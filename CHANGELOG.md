@@ -1,5 +1,11 @@
 ## Unreleased
 
+### Fix
+
+- **endpoint**: inspect the response for invalid chars
+
+## v2.7.4 (2023-05-08)
+
 ### Feat
 
 - **api_wrapper/endpoint**: print payload on parse error
