@@ -100,7 +100,12 @@ module PlaceOS
       # Parse the response
       {% verbatim do %}
         {% if model %}
-          {{model}}.from_json response.body
+          begin
+            {{model}}.from_json response.body
+          rescue error : JSON::Error
+            Log.warn { "failed to parse:\n#{response.body}" }
+            raise error
+          end
         {% else %}
           if response.body.empty?
             JSON::Any.new nil
