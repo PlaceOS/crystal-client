@@ -30,7 +30,15 @@ module PlaceOS
       description : String? = nil,
       tags : Array(String)? = nil,
       settings : Settings? = nil,
-      triggers : Array(String)? = nil
+      triggers : Array(String)? = nil,
+      display_name : String? = nil,
+      location : String? = nil,
+      code : String? = nil,
+      type : String? = nil,
+      count : Int32? = nil,
+      capacity : Int32? = nil,
+      map_id : String? = nil,
+      parent_id : String? = nil
     )
       post base, body: from_args, as: API::Models::Zone
     end
@@ -42,7 +50,15 @@ module PlaceOS
       description : String? = nil,
       tags : Array(String)? = nil,
       settings : Settings? = nil,
-      triggers : Array(String)? = nil
+      triggers : Array(String)? = nil,
+      display_name : String? = nil,
+      location : String? = nil,
+      code : String? = nil,
+      type : String? = nil,
+      count : Int32? = nil,
+      capacity : Int32? = nil,
+      map_id : String? = nil,
+      parent_id : String? = nil
     )
       put "#{base}/#{id}", body: from_args, as: API::Models::Zone
     end
