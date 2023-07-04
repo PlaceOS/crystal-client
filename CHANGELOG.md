@@ -1,4 +1,10 @@
-## Unreleased
+## v2.7.6 (2023-07-04)
+
+### Fix
+
+- **zones**: add missing fields to create and update
+
+## v2.7.5 (2023-05-08)
 
 ### Fix
 
