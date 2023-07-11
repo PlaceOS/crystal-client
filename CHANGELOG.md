@@ -1,3 +1,9 @@
+## Unreleased
+
+### Feat
+
+- **settings**: add create and update helpers
+
 ## v2.7.6 (2023-07-04)
 
 ### Fix
