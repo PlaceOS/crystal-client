@@ -2,6 +2,12 @@
 
 ### Feat
 
+- add missing system fields and provide query helpers for settings
+
+## v2.8.0 (2023-07-11)
+
+### Feat
+
 - **settings**: add create and update helpers
 
 ## v2.7.6 (2023-07-04)
