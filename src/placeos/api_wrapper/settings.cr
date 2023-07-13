@@ -36,6 +36,23 @@ module PlaceOS
       put "#{base}/#{id}", body: from_args, as: API::Models::Settings
     end
 
+    # Search
+    ###########################################################################
+
+    def search(parent_ids : Array(String))
+      search(parent_id: parent_ids.join(","))
+    end
+
+    # List or search for systems.
+    def search(
+      q : String? = nil,
+      limit : Int = 1000,
+      offset : Int = 0,
+      parent_id : String? = nil
+    )
+      get base, params: from_args, as: Array(API::Models::Settings)
+    end
+
     getter base : String = "#{API_ROOT}/settings"
   end
 end

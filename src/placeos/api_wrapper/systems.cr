@@ -75,7 +75,15 @@ module PlaceOS
       bookable : Bool? = nil,
       installed_ui_devices : Int? = nil,
       modules : Array(String)? = nil,
-      support_url : String? = nil
+      support_url : String? = nil,
+      display_name : String? = nil,
+      timezone : String? = nil,
+      code : String? = nil,
+      type : String? = nil,
+      map_id : String? = nil,
+      images : Array(String)? = nil,
+      features : Array(String)? = nil,
+      public : Bool? = nil
     )
       post base, body: from_args, as: System
     end
@@ -97,7 +105,15 @@ module PlaceOS
       bookable : Bool? = nil,
       installed_ui_devices : Int? = nil,
       modules : Array(String)? = nil,
-      support_url : String? = nil
+      support_url : String? = nil,
+      display_name : String? = nil,
+      timezone : String? = nil,
+      code : String? = nil,
+      type : String? = nil,
+      map_id : String? = nil,
+      images : Array(String)? = nil,
+      features : Array(String)? = nil,
+      public : Bool? = nil
     )
       put "#{base}/#{id}", params: "version=#{version}", body: from_args, as: System
     end

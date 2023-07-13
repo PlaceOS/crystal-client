@@ -25,6 +25,9 @@ module PlaceOS::Client::API::Models
     # an alternative to the full name that is easier to read.
     getter display_name : String?
 
+    # timezone the system is located
+    getter timezone : String?
+
     # the room identification code, like 3-04 etc.
     getter code : String?
 
@@ -34,6 +37,9 @@ module PlaceOS::Client::API::Models
     # a map identifier that can be used to locate this system.
     getter map_id : String?
 
+    # images of this room
+    getter images : Array(String)?
+
     # Number of people that can be accommodated in this space.
     getter capacity : Int32
 
@@ -42,6 +48,9 @@ module PlaceOS::Client::API::Models
 
     # Flag for signifying the space as reservable.
     getter bookable : Bool
+
+    # is the system intended for public access?
+    getter public : Bool?
 
     # Expected number of fixed installation touch panels.
     getter installed_ui_devices : Int32
