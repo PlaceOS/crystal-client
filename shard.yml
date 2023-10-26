@@ -1,5 +1,5 @@
 name: placeos
-version: 2.9.0
+version: 2.10.0
 license: MIT
 
 description: |
@@ -13,6 +13,9 @@ dependencies:
   placeos-models:
     github: placeos/models
     version: ">= 8.1"
+
+  link-header:
+    github: spider-gazelle/link-header
 
 development_dependencies:
   ameba:

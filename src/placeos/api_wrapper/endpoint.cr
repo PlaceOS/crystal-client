@@ -1,3 +1,4 @@
+require "link-header"
 require "../api_wrapper"
 
 module PlaceOS
@@ -99,7 +100,37 @@ module PlaceOS
 
       # Parse the response
       {% verbatim do %}
-        {% if model %}
+        {% if model.id.stringify.starts_with?("Array(") %}
+          if total_items = response.headers["X-Total-Count"]?.try &.to_i
+            results = {{model}}.new(total_items)
+            begin
+              loop do
+                new_results = {{model}}.from_json(response.body)
+                results.concat new_results
+
+                links = LinkHeader.new(response)
+                next_request = links["next"]?
+                break if next_request.nil? || new_results.empty?
+
+                # paginated requests are all GETs
+                response = client.connection &.get(next_request.as(String), headers)
+                raise API::Error.from_response(response) unless response.success?
+              end
+            rescue error : JSON::Error
+              Log.warn { "failed to parse #{path}:\n#{response.body.inspect}" }
+              raise error
+            end
+            results
+          else
+            response_body = response.body
+            begin
+              {{model}}.from_json response_body
+            rescue error : JSON::Error
+              Log.warn { "failed to parse #{path}:\n#{response_body.inspect}" }
+              raise error
+            end
+          end
+        {% elsif model %}
           response_body = response.body
           begin
             {{model}}.from_json response_body
