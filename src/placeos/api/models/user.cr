@@ -1,3 +1,4 @@
+require "placeos-models/user"
 require "./response"
 
 module PlaceOS::Client::API::Models
@@ -20,6 +21,8 @@ module PlaceOS::Client::API::Models
     getter deleted : Bool?
     getter department : String?
     getter preferred_language : String?
+    getter work_preferences : Array(PlaceOS::Model::User::WorktimePreference) = [] of PlaceOS::Model::User::WorktimePreference
+    getter work_overrides : Hash(String, PlaceOS::Model::User::WorktimePreference) = {} of String => PlaceOS::Model::User::WorktimePreference
 
     # Admin only fields
     getter sys_admin : Bool?
