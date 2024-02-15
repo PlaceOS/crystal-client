@@ -1,4 +1,3 @@
-require "placeos-models/user"
 require "./response"
 
 module PlaceOS::Client::API::Models
@@ -21,8 +20,8 @@ module PlaceOS::Client::API::Models
     getter deleted : Bool?
     getter department : String?
     getter preferred_language : String?
-    getter work_preferences : Array(PlaceOS::Model::User::WorktimePreference) = [] of PlaceOS::Model::User::WorktimePreference
-    getter work_overrides : Hash(String, PlaceOS::Model::User::WorktimePreference) = {} of String => PlaceOS::Model::User::WorktimePreference
+    getter work_preferences : Array(WorktimePreference) = [] of WorktimePreference
+    getter work_overrides : Hash(String, WorktimePreference) = {} of String => WorktimePreference
 
     # Admin only fields
     getter sys_admin : Bool?
@@ -37,6 +36,14 @@ module PlaceOS::Client::API::Models
     getter misc : String?
 
     getter associated_metadata : Hash(String, Metadata)?
+
+    # day_of_week: Index of the day of the week. `0` being Sunday
+    # start_time: Start time of work hours. e.g. `7.5` being 7:30AM
+    # end_time: End time of work hours. e.g. `18.5` being 6:30PM
+    # location: Name of the location the work is being performed at
+    record WorktimePreference, day_of_week : Int64, start_time : Float64, end_time : Float64, location : String = "" do
+      include JSON::Serializable
+    end
   end
 
   struct ResourceToken < Response
