@@ -1,4 +1,10 @@
-## Unreleased
+## v2.10.0 (2024-02-14)
+
+### Feat
+
+- **user**: [PPT-1154] add work_preferences and work_overrides to user ([#32](https://github.com/PlaceOS/crystal-client/pull/32))
+
+## v2.9.0 (2023-07-13)
 
 ### Feat
 
