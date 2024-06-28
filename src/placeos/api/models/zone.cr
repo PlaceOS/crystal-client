@@ -46,5 +46,9 @@ module PlaceOS::Client::API::Models
 
     # Trigger data returned when param `complete` is `true`
     getter trigger_data : Array(Trigger)?
+
+    # Timezone location of the zone
+    @[JSON::Field(converter: Time::Location::Converter)]
+    getter timezone : Time::Location?
   end
 end
