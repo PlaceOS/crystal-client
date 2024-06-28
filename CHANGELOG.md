@@ -1,3 +1,9 @@
+## v2.11.0 (2024-06-28)
+
+### Feat
+
+- **zone**: [PPT-1416] add timezone field to zone ([#34](https://github.com/PlaceOS/crystal-client/pull/34))
+
 ## v2.10.0 (2024-02-14)
 
 ### Feat
