@@ -5,8 +5,10 @@ class PlaceOS::Client::API::Error < Exception
     if response.success?
       # Shouldn't ever be passed through here...
       raise ArgumentError.new "response is valid"
+    elsif response.status_message
+      new "#{response.status_message}\n#{response.body}"
     else
-      new response.status_message || "HTTP error #{response.status_code}\n#{response.body}"
+      new "HTTP error #{response.status_code}\n#{response.body}"
     end
   end
 end
