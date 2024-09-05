@@ -1,3 +1,9 @@
+## v2.11.5 (2024-09-05)
+
+### Fix
+
+- **error**: output more information
+
 ## v2.11.4 (2024-09-05)
 
 ### Fix
