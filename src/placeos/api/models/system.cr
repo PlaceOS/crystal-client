@@ -59,6 +59,6 @@ module PlaceOS::Client::API::Models
     getter support_url : String?
 
     # Incrementing counter for handling stale updates.
-    property version : Int32
+    getter version : Int32
   end
 end
