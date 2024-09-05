@@ -1,3 +1,9 @@
+## v2.11.6 (2024-09-05)
+
+### Fix
+
+- **modes/system**: allow version to be updated
+
 ## v2.11.5 (2024-09-05)
 
 ### Fix
