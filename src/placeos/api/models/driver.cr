@@ -13,7 +13,11 @@ module PlaceOS::Client::API::Models
     getter default_uri : String
     getter default_port : Int32
 
-    getter role : Role
+    getter role : Int32
+
+    def role : Role
+      Role.from_value(@role)
+    end
 
     # Driver version management
 
