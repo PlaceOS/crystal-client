@@ -1,4 +1,10 @@
-## Unreleased
+## v2.11.2 (2024-09-05)
+
+### Fix
+
+- **models/driver**: fix role parsing
+
+## v2.11.1 (2024-09-05)
 
 ### Fix
 
