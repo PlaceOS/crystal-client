@@ -1,3 +1,9 @@
+## Unreleased
+
+### Fix
+
+- **models/driver**: missing id field
+
 ## v2.11.0 (2024-06-28)
 
 ### Feat
