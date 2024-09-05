@@ -5,6 +5,8 @@ module PlaceOS::Client::API::Models
   struct Driver < Response
     include Timestamps
 
+    getter id : String
+
     getter name : String
     getter description : String
 
