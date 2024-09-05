@@ -8,10 +8,10 @@ module PlaceOS::Client::API::Models
     getter id : String
 
     getter name : String
-    getter description : String
+    getter description : String?
 
-    getter default_uri : String
-    getter default_port : Int32
+    getter default_uri : String?
+    getter default_port : Int32?
 
     getter role : Int32
 
