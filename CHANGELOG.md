@@ -1,3 +1,9 @@
+## v2.11.3 (2024-09-05)
+
+### Fix
+
+- **model/driver**: mark fields as optional
+
 ## v2.11.2 (2024-09-05)
 
 ### Fix
