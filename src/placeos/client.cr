@@ -10,7 +10,7 @@ module PlaceOS
   class Client
     VERSION       = {{ `shards version "#{__DIR__}"`.chomp.stringify.downcase }}
     API_ROOT      = "/api/engine/v2"
-    AUTH_API_ROOT = "/api/auth"
+    AUTH_API_ROOT = "/auth"
 
     private AUTHORIZE_ENDPOINT = "/auth/oauth/authorize"
     private TOKEN_ENDPOINT     = "/auth/oauth/token"
