@@ -86,6 +86,12 @@ module PlaceOS
       end
     end
 
+    class_getter tls_context : OpenSSL::SSL::Context::Client do
+      tls = OpenSSL::SSL::Context::Client.new
+      tls.verify_mode = OpenSSL::SSL::VerifyMode::NONE
+      tls
+    end
+
     protected def session
       return @session.as(OAuth2::Session) unless @session.nil?
       client = OAuth2::Client.new(
@@ -99,9 +105,7 @@ module PlaceOS
       )
 
       if @insecure && (uri.scheme.try(&.downcase) || "https") == "https"
-        tls = OpenSSL::SSL::Context::Client.new
-        tls.verify_mode = OpenSSL::SSL::VerifyMode::NONE
-        client.http_client = HTTP::Client.new(uri.host.as(String), uri.port, tls)
+        client.http_client = HTTP::Client.new(uri.host.as(String), uri.port, self.class.tls_context)
       end
 
       token = client.get_access_token_using_resource_owner_credentials(
