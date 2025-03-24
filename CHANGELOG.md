@@ -1,3 +1,15 @@
+## Unreleased
+
+### Fix
+
+- **client**: tls context should be global
+
+## v2.11.8 (2024-11-19)
+
+### Fix
+
+- **auth**: AUTH_API_ROOT path ([#35](https://github.com/PlaceOS/crystal-client/pull/35))
+
 ## v2.11.7 (2024-09-05)
 
 ### Fix
