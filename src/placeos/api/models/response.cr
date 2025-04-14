@@ -9,16 +9,22 @@ module PlaceOS::Client::API::Models
     private module Init
       macro finished
         macro included
-          # Initializer based off {{@type.id}} properties
-          def initialize(@name : String
-            {% for arg in @type.instance_vars.reject &.has_default_value? %}
-              @{{arg.name}} : {{arg.type}},
-            {% end %}
-            {% for arg in @type.instance_vars.select &.has_default_value? %}
-              @{{arg.name}} : {{arg.type}} = {{arg.default_value.id}},
-            {% end %}
-          )
+          macro finished
+            __add_initialize__
           end
+        end
+      end
+
+      macro __add_initialize__
+        # Initializer based off {{@type.id}} properties
+        def initialize(@name : String
+          {% for arg in @type.instance_vars.reject &.has_default_value? %}
+            @{{arg.name}} : {{arg.type}},
+          {% end %}
+          {% for arg in @type.instance_vars.select &.has_default_value? %}
+            @{{arg.name}} : {{arg.type}} = {{arg.default_value.id}},
+          {% end %}
+        )
         end
       end
     end
