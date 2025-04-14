@@ -2,6 +2,12 @@
 
 ### Fix
 
+- **models/response**: fix for crystal 1.16+
+
+## v2.11.9 (2025-03-24)
+
+### Fix
+
 - **client**: tls context should be global
 
 ## v2.11.8 (2024-11-19)
