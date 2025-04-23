@@ -56,5 +56,17 @@ module PlaceOS
     )
       put "#{base}/#{id}", body: from_args, as: Driver
     end
+
+    def recompile(id : String)
+      client.connection do |conn|
+        url = "#{base}/#{id}/recompile"
+        response = conn.post(url)
+        unless response.success?
+          raise "Recompile failed with status #{response.status_code}: #{response.body}"
+        end
+        true
+      end
+    end
+
   end
 end
