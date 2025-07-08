@@ -20,6 +20,7 @@ module PlaceOS::Client::API::Models
     getter authority_id : String
     getter deleted : Bool?
     getter department : String?
+    getter locatable : Bool?
     getter preferred_language : String?
     getter work_preferences : Array(PlaceOS::Model::User::WorktimePreference) = [] of PlaceOS::Model::User::WorktimePreference
     getter work_overrides : Hash(String, PlaceOS::Model::User::WorktimePreference) = {} of String => PlaceOS::Model::User::WorktimePreference
