@@ -1,9 +1,6 @@
 require "./endpoint"
 
 module PlaceOS
-  # TODO:
-  # - create
-  # - update
   class Client::APIWrapper::Users < Client::APIWrapper::Endpoint
     include Client::APIWrapper::Endpoint::Fetch(User)
     include Client::APIWrapper::Endpoint::Destroy
@@ -16,6 +13,49 @@ module PlaceOS
 
     def resource_token
       post "#{base}/resource_token", as: ResourceToken
+    end
+
+    # Creates a new user.
+    def create(
+      email : String,
+      first_name : String,
+      last_name : String,
+      authority_id : String,
+      password : String? = nil,
+      confirm_password : String? = nil,
+      card_number : String? = nil,
+      groups : Array(String)? = nil,
+      image : String? = nil,
+      locatable : Bool? = nil,
+      staff_id : String? = nil,
+      support : Bool? = nil,
+      sys_admin : Bool? = nil,
+      work_overrides : Hash(String, PlaceOS::Model::User::WorktimePreference)? = nil,
+      work_preferences : Array(PlaceOS::Model::User::WorktimePreference)? = nil
+    )
+      post base, body: from_args, as: User
+    end
+
+    # Updates an existing user.
+    def update(
+      id : String,
+      email : String? = nil,
+      first_name : String? = nil,
+      last_name : String? = nil,
+      authority_id : String? = nil,
+      password : String? = nil,
+      confirm_password : String? = nil,
+      card_number : String? = nil,
+      groups : Array(String)? = nil,
+      image : String? = nil,
+      locatable : Bool? = nil,
+      staff_id : String? = nil,
+      support : Bool? = nil,
+      sys_admin : Bool? = nil,
+      work_overrides : Hash(String, PlaceOS::Model::User::WorktimePreference)? = nil,
+      work_preferences : Array(PlaceOS::Model::User::WorktimePreference)? = nil
+    )
+      put "#{base}/#{id}", body: from_args, as: User
     end
 
     # List or search for users.
