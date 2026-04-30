@@ -1,5 +1,13 @@
 ## Unreleased
 
+### Feat
+
+- driver recompile ([#36](https://github.com/PlaceOS/crystal-client/pull/36))
+
+## v2.11.11 (2025-07-09)
+
+## v2.11.10 (2025-04-14)
+
 ### Fix
 
 - **models/response**: fix for crystal 1.16+
