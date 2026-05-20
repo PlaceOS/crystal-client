@@ -57,8 +57,9 @@ module PlaceOS
       put "#{base}/#{id}", body: from_args, as: Driver
     end
 
-    def recompile(id : String)
+    def recompile(id : String, timeout : Time::Span = 10.minutes)
       client.connection do |conn|
+        conn.read_timeout = timeout
         url = "#{base}/#{id}/recompile"
         response = conn.post(url)
         unless response.success?
