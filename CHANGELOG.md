@@ -1,5 +1,7 @@
 ## Unreleased
 
+## v2.12.1 (2026-04-30)
+
 ### Feat
 
 - driver recompile ([#36](https://github.com/PlaceOS/crystal-client/pull/36))
