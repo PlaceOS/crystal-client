@@ -17,7 +17,7 @@ module PlaceOS
       id : String,
       name : String,
       details : JSON::Any | Hash | NamedTuple | Array,
-      description : String? = nil
+      description : String? = nil,
     )
       params = HTTP::Params{"name" => name}
       body = {name: name, description: description, details: details, parent_id: id}
@@ -28,11 +28,16 @@ module PlaceOS
       id : String,
       name : String,
       details : JSON::Any | Hash | NamedTuple | Array,
-      description : String? = nil
+      description : String? = nil,
     )
       params = HTTP::Params{"name" => name}
       body = {name: name, description: description, details: details, parent_id: id}
       patch "#{base}/#{id}?#{params}", body: body, as: API::Models::Metadata
+    end
+
+    def rename(id : String, current_name : String, new_name : String)
+      body = {current_name: current_name, new_name: new_name}
+      patch "#{base}/#{id}/name", body: body, as: API::Models::Metadata
     end
 
     def destroy(id : String, name : String)
