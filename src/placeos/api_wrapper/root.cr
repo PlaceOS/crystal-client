@@ -7,7 +7,7 @@ module PlaceOS
     # send data to listening drivers
     def signal(
       channel : String,
-      payload
+      payload,
     )
       post "#{base}/signal?channel=#{channel}", body: payload
     end

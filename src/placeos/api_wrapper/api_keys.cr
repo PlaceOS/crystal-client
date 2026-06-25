@@ -17,7 +17,7 @@ module PlaceOS
       user_id : String,
       description : String? = nil,
       scopes : Array(String)? = nil,
-      permissions : ::PlaceOS::Model::UserJWT::Permissions? = nil
+      permissions : ::PlaceOS::Model::UserJWT::Permissions? = nil,
     )
       post base, body: from_args, as: API::Models::APIKey
     end
@@ -29,7 +29,7 @@ module PlaceOS
       user_id : String? = nil,
       description : String? = nil,
       scopes : Array(String)? = nil,
-      permissions : ::PlaceOS::Model::UserJWT::Permissions? = nil
+      permissions : ::PlaceOS::Model::UserJWT::Permissions? = nil,
     )
       put "#{base}/#{id}", body: from_args, as: API::Models::APIKey
     end
@@ -64,7 +64,7 @@ module PlaceOS
       q : String? = nil,
       limit : Int = 20,
       offset : Int = 0,
-      authority_id : String? = nil
+      authority_id : String? = nil,
     )
       get base, params: from_args, as: Array(API::Models::APIKey)
     end

@@ -22,7 +22,7 @@ module PlaceOS
       getter_service_name : String? = nil,
       getter_statements : Hash(String, Array(String))? = nil,
       idp_slo_target_url : String? = nil,
-      slo_default_relay_state : String? = nil
+      slo_default_relay_state : String? = nil,
     )
       super(**args)
     end
@@ -43,7 +43,7 @@ module PlaceOS
       getter_service_name : String? = nil,
       getter_statements : Hash(String, Array(String))? = nil,
       idp_slo_target_url : String? = nil,
-      slo_default_relay_state : String? = nil
+      slo_default_relay_state : String? = nil,
     )
       super(**args)
     end

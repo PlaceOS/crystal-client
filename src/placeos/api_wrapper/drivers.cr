@@ -37,7 +37,7 @@ module PlaceOS
       default_uri : String? = nil,
       default_port : Int32? = nil,
       description : String? = nil,
-      ignore_connected : Bool? = nil
+      ignore_connected : Bool? = nil,
     )
       post base, body: from_args, as: Driver
     end
@@ -52,7 +52,7 @@ module PlaceOS
       default_uri : String? = nil,
       default_port : Int32? = nil,
       description : String? = nil,
-      ignore_connected : Bool? = nil
+      ignore_connected : Bool? = nil,
     )
       put "#{base}/#{id}", body: from_args, as: Driver
     end
@@ -68,6 +68,5 @@ module PlaceOS
         true
       end
     end
-
   end
 end

@@ -66,7 +66,7 @@ module PlaceOS
       limit : Int = 20,
       offset : Int = 0,
       control_system_id : String? = nil,
-      driver_id : String? = nil
+      driver_id : String? = nil,
     )
       get base, params: from_args, as: Array(API::Models::Module)
     end
@@ -87,7 +87,7 @@ module PlaceOS
       settings : Settings? = nil,
       notes : String? = nil,
       ignore_connected : Bool? = nil,
-      ignore_startstop : Bool? = nil
+      ignore_startstop : Bool? = nil,
     )
       post base, body: from_args, as: API::Models::Module
     end
@@ -105,7 +105,7 @@ module PlaceOS
       settings : Settings? = nil,
       notes : String? = nil,
       ignore_connected : Bool? = nil,
-      ignore_startstop : Bool? = nil
+      ignore_startstop : Bool? = nil,
     )
       put "#{base}/#{id}", body: from_args, as: API::Models::Module
     end

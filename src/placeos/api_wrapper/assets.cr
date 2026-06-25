@@ -16,7 +16,7 @@ module PlaceOS
       name : String,
       purchase_date : Time,
       identifier : String? = nil,
-      purchase_price : Int32? = nil
+      purchase_price : Int32? = nil,
     )
       post base, body: from_args, as: API::Models::Asset
     end
@@ -27,7 +27,7 @@ module PlaceOS
       name : String? = nil,
       purchase_date : Time? = nil,
       identifier : String? = nil,
-      purchase_price : Int32? = nil
+      purchase_price : Int32? = nil,
     )
       put "#{base}/#{id}", body: from_args, as: API::Models::Asset
     end
@@ -61,7 +61,7 @@ module PlaceOS
       q : String? = nil,
       limit : Int = 20,
       offset : Int = 0,
-      parent : String? = nil
+      parent : String? = nil,
     )
       get base, params: from_args, as: Array(API::Models::Asset)
     end

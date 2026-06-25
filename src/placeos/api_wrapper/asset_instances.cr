@@ -15,7 +15,7 @@ module PlaceOS
     def create(
       name : String,
       usage_start : Time,
-      usage_end : Time
+      usage_end : Time,
     )
       post base, body: from_args, as: API::Models::AssetInstance
     end
@@ -26,7 +26,7 @@ module PlaceOS
       name : String? = nil,
       purchase_date : Time? = nil,
       identifier : String? = nil,
-      purchase_price : Int32? = nil
+      purchase_price : Int32? = nil,
     )
       put "#{base}/#{id}", body: from_args, as: API::Models::AssetInstance
     end
@@ -55,7 +55,7 @@ module PlaceOS
     def search(
       q : String? = nil,
       limit : Int = 20,
-      offset : Int = 0
+      offset : Int = 0,
     )
       get base, params: from_args, as: Array(API::Models::AssetInstance)
     end
