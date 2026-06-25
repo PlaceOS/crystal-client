@@ -19,7 +19,7 @@ module PlaceOS
       auth_scheme : String? = nil,
       token_url : String? = nil,
       scope : String? = nil,
-      raw_info_url : String? = nil
+      raw_info_url : String? = nil,
     )
       super(**args)
     end
@@ -37,7 +37,7 @@ module PlaceOS
       auth_scheme : String? = nil,
       token_url : String? = nil,
       scope : String? = nil,
-      raw_info_url : String? = nil
+      raw_info_url : String? = nil,
     )
       super(**args)
     end

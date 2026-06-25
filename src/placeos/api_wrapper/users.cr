@@ -31,7 +31,7 @@ module PlaceOS
       support : Bool? = nil,
       sys_admin : Bool? = nil,
       work_overrides : Hash(String, PlaceOS::Model::User::WorktimePreference)? = nil,
-      work_preferences : Array(PlaceOS::Model::User::WorktimePreference)? = nil
+      work_preferences : Array(PlaceOS::Model::User::WorktimePreference)? = nil,
     )
       post base, body: from_args, as: User
     end
@@ -53,7 +53,7 @@ module PlaceOS
       support : Bool? = nil,
       sys_admin : Bool? = nil,
       work_overrides : Hash(String, PlaceOS::Model::User::WorktimePreference)? = nil,
-      work_preferences : Array(PlaceOS::Model::User::WorktimePreference)? = nil
+      work_preferences : Array(PlaceOS::Model::User::WorktimePreference)? = nil,
     )
       put "#{base}/#{id}", body: from_args, as: User
     end
@@ -82,7 +82,7 @@ module PlaceOS
       offset : Int = 0,
       authority_id : String? = nil,
       include_deleted : Bool = false,
-      include_metadata : Bool = false
+      include_metadata : Bool = false,
     )
       get base, params: from_args, as: Array(API::Models::User)
     end

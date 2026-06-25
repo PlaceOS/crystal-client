@@ -27,7 +27,7 @@ module PlaceOS
       module_name : String,
       method : String,
       index : Int32 = 1,
-      *args : Array(JSON::Any::Type)
+      *args : Array(JSON::Any::Type),
     )
       post "#{base}/#{id}/#{module_name}_#{index}/#{method}", body: args
     end
@@ -83,7 +83,7 @@ module PlaceOS
       map_id : String? = nil,
       images : Array(String)? = nil,
       features : Array(String)? = nil,
-      public : Bool? = nil
+      public : Bool? = nil,
     )
       post base, body: from_args, as: System
     end
@@ -113,7 +113,7 @@ module PlaceOS
       map_id : String? = nil,
       images : Array(String)? = nil,
       features : Array(String)? = nil,
-      public : Bool? = nil
+      public : Bool? = nil,
     )
       put "#{base}/#{id}", params: "version=#{version}", body: from_args, as: System
     end
@@ -145,7 +145,7 @@ module PlaceOS
       module_id : String? = nil,
       features : String? = nil,
       capacity : Int32? = nil,
-      bookable : Bool? = nil
+      bookable : Bool? = nil,
     )
       get base, params: from_args, as: Array(System)
     end

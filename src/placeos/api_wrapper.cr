@@ -18,7 +18,7 @@ module PlaceOS
   class Client::APIWrapper
     include Client::API::Models
 
-    protected getter authenticate : HTTP::Client -> = ->(_client : HTTP::Client) {}
+    protected getter authenticate : HTTP::Client -> = ->(_client : HTTP::Client) { }
     protected getter uri : URI
     protected getter host_header : String?
     protected getter insecure : Bool
@@ -37,7 +37,7 @@ module PlaceOS
       @uri = uri.is_a?(String) ? URI.parse(uri) : uri
     end
 
-    def connection
+    def connection(&)
       HTTP::Client.new(uri) do |client|
         client.tls?.try(&.verify_mode = :NONE) if insecure
         authenticate.call(client)

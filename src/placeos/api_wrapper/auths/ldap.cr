@@ -17,7 +17,7 @@ module PlaceOS
       uid : String? = nil,
       bind_dn : String? = nil,
       password : String? = nil,
-      filter : String? = nil
+      filter : String? = nil,
     )
       super(**args)
     end
@@ -33,7 +33,7 @@ module PlaceOS
       base : String? = nil,
       bind_dn : String? = nil,
       password : String? = nil,
-      filter : String? = nil
+      filter : String? = nil,
     )
       super(**args)
     end

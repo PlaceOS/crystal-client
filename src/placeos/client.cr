@@ -29,7 +29,7 @@ module PlaceOS
       new(uri, email: email, password: password, client_id: client_id, client_secret: client_secret)
     end
 
-    def self.from_environment_user
+    def self.from_environment_user(&)
       client = self.from_environment_user
       yield client
     ensure
@@ -46,7 +46,7 @@ module PlaceOS
       @token : OAuth2::AccessToken? = nil,
       @host_header : String? = nil,
       @insecure : Bool = false,
-      @x_api_key : String? = nil
+      @x_api_key : String? = nil,
     )
       @uri = base_uri.is_a?(String) ? URI.parse(base_uri) : base_uri
       @api_wrapper = APIWrapper.new(@uri, @host_header, @insecure) do |http|

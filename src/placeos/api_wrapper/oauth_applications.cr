@@ -27,7 +27,7 @@ module PlaceOS
       q : String? = nil,
       limit : Int = 20,
       offset : Int = 0,
-      authority : String? = nil
+      authority : String? = nil,
     )
       get base, params: from_args, as: Array(OAuthApplication)
     end
@@ -42,7 +42,7 @@ module PlaceOS
       redirect_uri : String? = nil,
       skip_authorization : Bool? = nil,
       confidential : Bool? = nil,
-      revoked_at : Time? = nil
+      revoked_at : Time? = nil,
     )
       put "#{base}/#{id}", body: from_args, as: OAuthApplication
     end
@@ -56,7 +56,7 @@ module PlaceOS
       redirect_uri : String? = nil,
       skip_authorization : Bool? = nil,
       confidential : Bool? = nil,
-      revoked_at : Time? = nil
+      revoked_at : Time? = nil,
     )
       post base, body: from_args, as: OAuthApplication
     end

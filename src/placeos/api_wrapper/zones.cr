@@ -16,7 +16,7 @@ module PlaceOS
       method : String,
       module_name : String,
       index : Int32 = 1,
-      args = nil
+      args = nil,
     )
       post "#{base}/#{id}/#{module_name}_#{index}/#{method}", body: args
     end
@@ -38,7 +38,7 @@ module PlaceOS
       count : Int32? = nil,
       capacity : Int32? = nil,
       map_id : String? = nil,
-      parent_id : String? = nil
+      parent_id : String? = nil,
     )
       post base, body: from_args, as: API::Models::Zone
     end
@@ -58,7 +58,7 @@ module PlaceOS
       count : Int32? = nil,
       capacity : Int32? = nil,
       map_id : String? = nil,
-      parent_id : String? = nil
+      parent_id : String? = nil,
     )
       put "#{base}/#{id}", body: from_args, as: API::Models::Zone
     end
@@ -89,7 +89,7 @@ module PlaceOS
       limit : Int = 20,
       offset : Int = 0,
       parent_id : String? = nil,
-      tags : Array(String) | String? = nil
+      tags : Array(String) | String? = nil,
     )
       get base, params: from_args, as: Array(API::Models::Zone)
     end
