@@ -1,5 +1,9 @@
 ## Unreleased
 
+### Feat
+
+- [PPT-2508] add metadata rename method ([#38](https://github.com/PlaceOS/crystal-client/pull/38))
+
 ## v2.12.1 (2026-04-30)
 
 ### Feat
